@@ -1,4 +1,11 @@
-import type { DoctorSummary, SpecCategory } from '~/composables/useCareNowData'
+import type { DoctorSummary } from '~/composables/useDoctorsApi'
+
+export interface SpecCategory {
+	emoji: string
+	name: string
+	count: number
+	bg: string
+}
 
 // Specialty isn't a backend model (just a free-text field on Doctor), so
 // emoji/color are a cosmetic-only local lookup — the set of specialties and

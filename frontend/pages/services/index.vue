@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { SpecCategory } from '~/composables/useCareNowData'
+import type { SpecCategory } from '~/composables/useSpecialtiesApi'
 
 interface ServiceCatalogEntry { name: string; minPrice: number; maxPrice: number; clinicCount: number }
 

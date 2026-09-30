@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ClinicSummary } from '~/composables/useCareNowData'
+import type { ClinicSummary } from '~/composables/useClinicsApi'
 
 const { fetchClinics } = useClinicsApi()
 

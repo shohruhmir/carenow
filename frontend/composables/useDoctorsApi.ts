@@ -1,5 +1,30 @@
 import Service from '~/service/Service'
-import type { DoctorSummary } from '~/composables/useCareNowData'
+
+export interface Slot {
+	label: string
+	active?: boolean
+}
+
+export interface DoctorSummary {
+	id: number | string
+	init: string
+	bg: string
+	fg: string
+	name: string
+	spec: string
+	exp: string
+	rating: string
+	reviews: number
+	clinic: string
+	addr?: string
+	slots: Slot[]
+	oldPrice?: string
+	price: string
+	disc?: string
+	promo?: boolean
+	top?: boolean
+	kids?: boolean
+}
 
 // Prefixed to avoid colliding with useClinicsApi.ts's richer ApiClinic/
 // ApiBranch (Nuxt auto-imports every composable file's exports globally by

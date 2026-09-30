@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DoctorSummary } from '~/composables/useCareNowData'
+import type { DoctorSummary } from '~/composables/useDoctorsApi'
 import { aggregateSpecialties } from '~/composables/useSpecialtiesApi'
 
 const { t } = useSiteContent()

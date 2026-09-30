@@ -7,14 +7,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* fonts */
-@font-face {
-  font-family: 'Prosto One';
-  src: url('~/assets/fonts/ProstoOne-Regular.woff2') format('woff2'),
-    url('~/assets/fonts/ProstoOne-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
 
 /* inter */
 @font-face {
@@ -77,7 +69,6 @@
 
   /* fonts */
   --font-inter: 'Inter', sans-serif;
-  --font-prosto: 'Prosto One';
 
   /* font sizes */
   --text-tiny: 10px;
@@ -189,18 +180,4 @@ input {
   .container {
     max-width: 100%
   }
-}
-
-
-/* swiper */
-.swiper-slide {
-  height: auto;
-  border-radius: 12px;
-  overflow: hidden;
-  filter: brightness(.6)
-}
-
-.swiper-slide.swiper-slide-active {
-  filter: brightness(1);
-  border: 1px solid var(--color-bg);
 }

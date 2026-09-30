@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DoctorSummary } from '~/composables/useCareNowData'
+import type { DoctorSummary } from '~/composables/useDoctorsApi'
 
 withDefaults(defineProps<{ doctor: DoctorSummary; variant?: 'grid' | 'list' }>(), { variant: 'grid' })
 </script>

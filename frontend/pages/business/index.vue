@@ -1,5 +1,20 @@
 <script lang="ts" setup>
-import { bizTariffs } from '~/composables/useCareNowData'
+// Static B2B pricing-plan copy — not backed by any Prisma model, this is
+// product/marketing pricing, not a resource fetched from the backend.
+const bizTariffs = [
+	{ id: 'start', name: 'Start', price: 'Bepul', note: 'har yozuvdan 8% komissiya', features: [
+		{ ok: true, text: '1 filial · 5 shifokor' }, { ok: true, text: 'Onlayn yozuv 24/7' }, { ok: true, text: 'SMS eslatmalar' },
+		{ ok: false, text: 'Analitika' }, { ok: false, text: 'Promo joylashuv' },
+	], cta: 'Boshlash', highlight: false },
+	{ id: 'pro', name: 'Pro', price: "1.2 mln so'm/oy", note: 'komissiya 4% · filial uchun', features: [
+		{ ok: true, text: '5 tagacha filial · cheksiz shifokor' }, { ok: true, text: 'Odontogram + EMR' }, { ok: true, text: 'Analitika va hisobotlar' },
+		{ ok: true, text: 'Promo joylashuv (oyiga 2 hafta)' }, { ok: true, text: "Ustuvor qo'llab-quvvatlash" },
+	], cta: 'Tanlash', highlight: true, badge: 'MASHHUR' },
+	{ id: 'network', name: 'Network', price: 'Individual', note: '6+ filialli tarmoqlar uchun', features: [
+		{ ok: true, text: 'Cheksiz filial va shifokor' }, { ok: true, text: 'API integratsiya (1C, MIS)' }, { ok: true, text: 'Shaxsiy menejer' },
+		{ ok: true, text: 'Brendlangan sahifa' }, { ok: true, text: 'Marketing hamkorligi' },
+	], cta: "Bog'lanish", highlight: false, dark: true },
+]
 
 const { t: tc } = useSiteContent()
 const { createLead } = useBusinessApi()

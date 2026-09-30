@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DoctorSummary } from '~/composables/useCareNowData'
+import type { DoctorSummary } from '~/composables/useDoctorsApi'
 
 const route = useRoute()
 const router = useRouter()

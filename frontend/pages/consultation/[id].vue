@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { getDoctorProfile } from '~/composables/useCareNowData'
+import { getDoctorProfile } from '~/composables/useConsultationMock'
 
 const route = useRoute()
 const doctor = computed(() => getDoctorProfile(route.params.id as string))

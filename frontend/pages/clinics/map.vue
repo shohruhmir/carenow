@@ -3,8 +3,7 @@
 // the reserved <map> HTML element and trips Vue's dev-mode warning.
 defineOptions({ name: 'ClinicsMapPage' })
 
-import type { ClinicSummary, Branch } from '~/composables/useCareNowData'
-import { haversineKm } from '~/composables/useCareNowData'
+import type { ClinicSummary, Branch } from '~/composables/useClinicsApi'
 
 const { load, hasApiKey } = useYandexMaps()
 const { fetchClinics } = useClinicsApi()
@@ -36,6 +35,15 @@ const geoStatus = ref<'idle' | 'locating' | 'denied' | 'error'>('idle')
 const activeBranchKey = ref<string | null>(null)
 
 const TASHKENT_CENTER: [number, number] = [41.3111, 69.2797]
+
+// Great-circle distance between two lat/lng points, in kilometers.
+function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number) {
+	const R = 6371
+	const dLat = (lat2 - lat1) * Math.PI / 180
+	const dLng = (lng2 - lng1) * Math.PI / 180
+	const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2
+	return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+}
 
 function branchKey(mb: MapBranch) {
 	return `${mb.clinicId}-${mb.branch.id}`

@@ -61,7 +61,7 @@ Testing this: mock each Prisma model method as `jest.fn()` on a plain object cas
 
 ## Frontend architecture
 
-Nuxt 3 in SPA mode (`ssr: false` in `nuxt.config.ts`). Key module choices: Tailwind v4 via `@tailwindcss/vite` (not the Nuxt Tailwind module), Pinia + `pinia-plugin-persistedstate` for the one store (`store/useful.store.ts`), `@nuxtjs/i18n` with `uz` (default) / `ru` / `en` locale files under `i18n/locales/`, `@nuxt/ui`, `@nuxt/icon` (Tabler icons — see `DESIGN.md` for the icon-meaning conventions), `nuxt-aos` for scroll-reveal, `nuxt-mapbox`/Yandex Maps for the clinic map view.
+Nuxt 3 in SPA mode (`ssr: false` in `nuxt.config.ts`). Key module choices: Tailwind v4 via `@tailwindcss/vite` (not the Nuxt Tailwind module), Pinia + `pinia-plugin-persistedstate` for the one store (`store/useful.store.ts`), `@nuxtjs/i18n` with `uz` (default) / `ru` / `en` locale files under `i18n/locales/`, `@nuxt/ui`, `@nuxt/icon` (Tabler icons — see `DESIGN.md` for the icon-meaning conventions), `nuxt-aos` for scroll-reveal, Yandex Maps (`composables/useYandexMaps.ts`) for the clinic map view.
 
 **API layer:** every network call goes through `service/Service.ts` — a thin Axios wrapper (`API.ts` builds the Axios instance from `runtimeConfig.public.apiBaseUrl`) exposing `get/post/patch/delete<T>()`, all returning `ApiResponse<T> = { data, status, message, success }` (`types/api.types.ts`) — never a raw Axios response or a thrown error, since `formatError()` catches Axios errors and normalizes them into the same shape (reading the backend's real error message off `err.response.data.message`).
 

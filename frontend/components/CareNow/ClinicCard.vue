@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { badgeColor, type ClinicSummary } from '~/composables/useCareNowData'
+import { badgeColor, type ClinicSummary } from '~/composables/useClinicsApi'
 
 const props = defineProps<{ clinic: ClinicSummary }>()
 

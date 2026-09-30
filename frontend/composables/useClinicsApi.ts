@@ -1,5 +1,49 @@
 import Service from '~/service/Service'
-import type { ClinicSummary, Branch } from '~/composables/useCareNowData'
+
+export interface Branch {
+	id: number | string
+	name: string
+	addr: string
+	hours: string
+	docs: number
+	phone: string
+	lat: number
+	lng: number
+}
+
+export interface ClinicBadge {
+	label: string
+	kind: 'blue' | 'amber' | 'green'
+}
+
+export interface ClinicSummary {
+	id: number | string
+	slug: string
+	logo: string
+	logoBg: string
+	logoFg: string
+	name: string
+	rating: string
+	reviews: string
+	docCount: number
+	badges: ClinicBadge[]
+	desc: string
+	dist: string
+	is247: boolean
+	hoursLabel: string
+	weekly: { d: string; h: string }[] | null
+	branches: Branch[]
+}
+
+const badgeKindClass: Record<ClinicBadge['kind'], { fg: string; bg: string }> = {
+	blue: { fg: '#0369A1', bg: '#E0F2FE' },
+	amber: { fg: '#B45309', bg: '#FEF3C7' },
+	green: { fg: '#047857', bg: '#D1FAE5' },
+}
+
+export function badgeColor(kind: ClinicBadge['kind']) {
+	return badgeKindClass[kind]
+}
 
 export interface ApiBranch { id: string; name: string; address: string; phone: string; lat: number; lng: number }
 // The list endpoint (GET /clinics) only sends { specialty } per doctor to
