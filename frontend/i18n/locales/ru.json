@@ -1,0 +1,42 @@
+{
+  "hi": "Hello",
+  "search": "Поиск",
+  "sum": "UZS",
+  "select": "Выбрать",
+  "cn": {
+    "nav": {
+      "doctors": "Врачи",
+      "clinics": "Клиники",
+      "services": "Услуги",
+      "prices": "Цены"
+    },
+    "header": {
+      "location": "Ташкент",
+      "login": "Войти",
+      "addClinic": "Добавить клинику",
+      "searchPlaceholder": "Услуга, врач или клиника…",
+      "search": "Найти"
+    },
+    "buttons": {
+      "book": "Записаться",
+      "seeAll": "Все",
+      "showMore": "Показать ещё",
+      "details": "Подробнее",
+      "onMap": "На карте",
+      "continue": "Продолжить",
+      "readMore": "Читать далее"
+    },
+    "footer": {
+      "tagline": "Крупнейший медицинский маркетплейс Центральной Азии. Начиная со стоматологии — во всех направлениях.",
+      "cities": "Города",
+      "forPatients": "Пациентам",
+      "forClinics": "Клиникам",
+      "rights": "Все права защищены"
+    },
+    "common": {
+      "reviewsCount": "{n} отзывов",
+      "doctorsCount": "{n} врачей",
+      "cancelFree": "Бесплатная отмена · до 24 часов до приёма"
+    }
+  }
+}

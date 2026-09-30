@@ -1,0 +1,42 @@
+{
+  "hi": "Hello",
+  "search": "Qidiruv",
+  "sum": "UZS",
+  "select": "Tanlang",
+  "cn": {
+    "nav": {
+      "doctors": "Shifokorlar",
+      "clinics": "Klinikalar",
+      "services": "Xizmatlar",
+      "prices": "Narxlar"
+    },
+    "header": {
+      "location": "Toshkent",
+      "login": "Kirish",
+      "addClinic": "Klinikangizni qo'shing",
+      "searchPlaceholder": "Xizmat, shifokor yoki klinika…",
+      "search": "Qidirish"
+    },
+    "buttons": {
+      "book": "Yozilish",
+      "seeAll": "Barchasi",
+      "showMore": "Yana ko'rsatish",
+      "details": "Batafsil",
+      "onMap": "Xaritada",
+      "continue": "Davom etish",
+      "readMore": "Davomini o'qish"
+    },
+    "footer": {
+      "tagline": "Markaziy Osiyodagi eng yirik tibbiy marketpleys. Stomatologiyadan boshlab — barcha yo'nalishlarga.",
+      "cities": "Shaharlar",
+      "forPatients": "Bemorlarga",
+      "forClinics": "Klinikalarga",
+      "rights": "Barcha huquqlar himoyalangan"
+    },
+    "common": {
+      "reviewsCount": "{n} sharh",
+      "doctorsCount": "{n} shifokor",
+      "cancelFree": "Bekor qilish bepul · qabuldan 24 soat oldingacha"
+    }
+  }
+}

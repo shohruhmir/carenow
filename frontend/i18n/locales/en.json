@@ -1,0 +1,42 @@
+{
+  "hi": "Hello",
+  "search": "Search",
+  "sum": "UZS",
+  "select": "Select",
+  "cn": {
+    "nav": {
+      "doctors": "Doctors",
+      "clinics": "Clinics",
+      "services": "Services",
+      "prices": "Prices"
+    },
+    "header": {
+      "location": "Tashkent",
+      "login": "Log in",
+      "addClinic": "Add your clinic",
+      "searchPlaceholder": "Service, doctor or clinic…",
+      "search": "Search"
+    },
+    "buttons": {
+      "book": "Book",
+      "seeAll": "See all",
+      "showMore": "Show more",
+      "details": "Details",
+      "onMap": "On map",
+      "continue": "Continue",
+      "readMore": "Read more"
+    },
+    "footer": {
+      "tagline": "The largest healthcare marketplace in Central Asia. Starting with dentistry — expanding to every specialty.",
+      "cities": "Cities",
+      "forPatients": "For patients",
+      "forClinics": "For clinics",
+      "rights": "All rights reserved"
+    },
+    "common": {
+      "reviewsCount": "{n} reviews",
+      "doctorsCount": "{n} doctors",
+      "cancelFree": "Free cancellation · up to 24h before the visit"
+    }
+  }
+}

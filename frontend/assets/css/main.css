@@ -1,0 +1,206 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/* @nuxtjs/color-mode (auto-registered by @nuxt/ui) toggles a .dark class on
+   <html> with classSuffix:"" — point Tailwind's dark: variant at it instead
+   of the default prefers-color-scheme media query. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* fonts */
+@font-face {
+  font-family: 'Prosto One';
+  src: url('~/assets/fonts/ProstoOne-Regular.woff2') format('woff2'),
+    url('~/assets/fonts/ProstoOne-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* inter */
+@font-face {
+  font-family: 'Inter';
+  src: url('Inter-Italic.woff2') format('woff2'),
+    url('~/assets/fonts/Inter-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('~/assets/fonts/Inter-Regular.woff2') format('woff2'),
+    url('~/assets/fonts/Inter-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* nuxt ui */
+:root {
+  --ui-radius: var(--radius-lg);
+  --ui-bg: #F6F6F6;
+  --dp-border-radius: 8px !important;
+    --dp-background-color: red !important;
+}
+
+/* custom themes */
+@theme {
+  --color-main: #0369A1;
+    --color-main-hover: #0284C7;
+    --color-gray-line: #EDF2F9;
+    --color-black: #0F172A;
+    --color-bg: #F5F8FB;
+
+    /* CareNow brand palette */
+    --color-brand-sky: #0EA5E9;
+    --color-brand-sky-light: #E0F2FE;
+    --color-brand-sky-border: #BAE6FD;
+    --color-brand-emerald: #10B981;
+    --color-brand-emerald-light: #D1FAE5;
+    --color-brand-emerald-text: #047857;
+    --color-brand-amber: #F59E0B;
+    --color-brand-amber-light: #FEF3C7;
+    --color-brand-amber-text: #B45309;
+    --color-brand-pink: #DB2777;
+    --color-brand-pink-light: #FCE7F3;
+    --color-ink: #0F172A;
+    --color-ink-soft: #475569;
+    --color-ink-mute: #64748B;
+    --color-line: #E2E8F0;
+    --color-line-soft: #EEF2F7;
+    --color-surface: #F8FAFC;
+    --color-card: #ffffff;
+
+    /* gradient */
+    --gradient: linear-gradient(135deg, #0EA5E9, #10B981);
+    --gradient-hero: linear-gradient(160deg, #0EA5E9, #0284C7 55%, #0E7490);
+
+  /* fonts */
+  --font-inter: 'Inter', sans-serif;
+  --font-prosto: 'Prosto One';
+
+  /* font sizes */
+  --text-tiny: 10px;
+
+  /* margins */
+  --spacing-4.5: 18px;
+  --spacing-7.5: 30px;
+  --spacing-15: 60px;
+  --spacing-45: 180px;
+
+  /* shadow */
+  --shadow-modal: 0px -4px 18px 0px #0000000F;
+  --shadow-card: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+
+/* sizes */
+  --xs: 450px;
+  --sm: 640px;
+  --md: 768px;
+  --lg: 1024px;
+  --xl: 1280px;
+  --xxl: 1536px;
+}
+
+/* dark theme overrides — flips the neutral tokens above; brand/accent
+   colors stay the same in both themes */
+.dark {
+  --color-ink: #F1F5F9;
+  --color-ink-soft: #CBD5E1;
+  --color-ink-mute: #94A3B8;
+  --color-line: #334155;
+  --color-line-soft: #293548;
+  --color-surface: #1E293B;
+  --color-card: #16213A;
+  --ui-bg: #0F172A;
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-card);
+  color: var(--color-ink);
+  font-family: 'Inter', sans-serif;
+  transition: background-color .2s ease, color .2s ease;
+}
+  
+  button {
+    cursor: pointer;
+}
+
+input {
+  outline: none;
+}
+
+/* transition */
+.drawer-enter-active,
+.drawer-leave-active {
+  transition: all 0.5s ease;
+  bottom: 0;
+}
+
+.drawer-enter-from,
+.drawer-leave-to {
+  bottom: -100%;
+}
+.container {
+  width: 100%;
+  max-width: var(--xl);
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (max-width: 1440px) {
+  .container {
+    max-width: var(--xl);
+  }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    max-width: var(--lg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    max-width: var(--md);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: var(--sm);
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+    max-width: var(--xs);
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    max-width: 100%
+  }
+}
+
+
+/* swiper */
+.swiper-slide {
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  filter: brightness(.6)
+}
+
+.swiper-slide.swiper-slide-active {
+  filter: brightness(1);
+  border: 1px solid var(--color-bg);
+}

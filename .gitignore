@@ -1,0 +1,25 @@
+# Node dependencies
+node_modules/
+
+# Build outputs
+dist/
+.output
+.data
+.nuxt
+.nitro
+.cache
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+.gstack/

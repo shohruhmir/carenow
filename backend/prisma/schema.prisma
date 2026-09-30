@@ -1,0 +1,165 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  PATIENT
+  CLINIC_ADMIN
+  DOCTOR
+  SUPER_ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+model User {
+  id            String     @id @default(uuid())
+  // Nullable: accounts created via Google sign-in have no phone until the
+  // patient adds one later. Postgres allows multiple NULLs under a unique
+  // index, so this stays safe for phone+OTP accounts (always non-null).
+  phone         String?    @unique
+  name          String?
+  role          Role       @default(PATIENT)
+  // Username/password login — only set for accounts that need it (currently
+  // just SUPER_ADMIN); everyone else authenticates via phone+OTP or Google.
+  username      String?    @unique
+  passwordHash  String?
+  email         String?    @unique
+  googleId      String?    @unique
+  createdAt     DateTime   @default(now())
+  ownedClinics  Clinic[]   @relation("ClinicOwner")
+  bookings      Booking[]
+  doctorProfile Doctor?    @relation("DoctorUser")
+  favorites     Favorite[]
+}
+
+model OtpCode {
+  id        String   @id @default(uuid())
+  phone     String
+  code      String
+  expiresAt DateTime
+  consumed  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([phone])
+}
+
+model Clinic {
+  id       String    @id @default(uuid())
+  slug     String    @unique
+  name     String
+  desc     String?
+  rating   Float     @default(0)
+  is247    Boolean   @default(false)
+  ownerId  String?
+  owner    User?     @relation("ClinicOwner", fields: [ownerId], references: [id])
+  branches Branch[]
+  doctors  Doctor[]
+  services Service[]
+}
+
+model Branch {
+  id       String @id @default(uuid())
+  clinicId String
+  clinic   Clinic @relation(fields: [clinicId], references: [id])
+  name     String
+  address  String
+  phone    String
+  lat      Float
+  lng      Float
+  doctors  Doctor[]
+}
+
+model Doctor {
+  id            String   @id @default(uuid())
+  clinicId      String
+  branchId      String
+  clinic        Clinic   @relation(fields: [clinicId], references: [id])
+  branch        Branch   @relation(fields: [branchId], references: [id])
+  name          String
+  specialty     String
+  experienceYrs Int
+  rating        Float    @default(0)
+  reviewsCount  Int      @default(0)
+  userId        String?  @unique
+  user          User?    @relation("DoctorUser", fields: [userId], references: [id])
+  availability  Availability[]
+  bookings      Booking[]
+  favoritedBy   Favorite[]
+}
+
+model Availability {
+  id          String @id @default(uuid())
+  doctorId    String
+  doctor      Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  dayOfWeek   Int
+  startTime   String
+  endTime     String
+  slotMinutes Int    @default(30)
+}
+
+model Service {
+  id       String @id @default(uuid())
+  clinicId String
+  clinic   Clinic @relation(fields: [clinicId], references: [id])
+  name     String
+  price    Int
+}
+
+model Booking {
+  id        String        @id @default(uuid())
+  patientId String
+  patient   User          @relation(fields: [patientId], references: [id])
+  doctorId  String
+  doctor    Doctor        @relation(fields: [doctorId], references: [id])
+  serviceId String?
+  date      DateTime
+  time      String
+  status    BookingStatus @default(PENDING)
+  createdAt DateTime      @default(now())
+
+  @@unique([doctorId, date, time])
+}
+
+model Favorite {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  doctorId  String
+  doctor    Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, doctorId])
+}
+
+model BusinessLead {
+  id          String   @id @default(uuid())
+  clinicName  String
+  city        String
+  branchCount String
+  phone       String
+  createdAt   DateTime @default(now())
+}
+
+// Admin-editable marketing/content text (uz/ru/en). The set of keys is fixed
+// by which templates reference them — rows only come into existence via the
+// seed script, never created ad hoc from the admin panel (see super-admin
+// content routes: update-only, no create/delete).
+model SiteContent {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  label     String
+  uz        String
+  ru        String
+  en        String
+  updatedAt DateTime @updatedAt
+}
